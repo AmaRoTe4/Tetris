@@ -1,0 +1,36 @@
+.color1{
+  background-color: crimson;
+  display: inline;
+  border-radius: 75%;
+}
+.color1:hover{
+  cursor: pointer;
+}
+
+.color10{
+  background-color: crimson;
+  display: inline;
+}
+
+.color2{
+  display: none;
+}
+
+.links{
+  text-decoration: none;
+  color: black;
+}
+
+.opacidad{
+  opacity: 0.5;
+}
+
+#tablero{
+  border: solid 1px black;
+  margin-top: 100px;
+  height: 100px ; width: 200px
+}
+
+#tetris{
+  transform: translateY(-70px);
+}

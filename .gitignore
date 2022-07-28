@@ -1,0 +1,8 @@
+front-app/node_modules
+front-app/package.json
+front-app/package-lock.json
+front-app/README.md
+node/package.json
+node/package-lock.json
+node/node_modules
+notas.md

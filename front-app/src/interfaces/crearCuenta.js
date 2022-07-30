@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import md5 from 'md5';
 
 
-// const URI = "http://192.168.0.110:8000/Usuarios/";
+// const URI = "http://192.168.0.112:8000/Usuarios/";
 const URI = "http://localhost:8000/Usuarios/";
 let turno = 0;
 

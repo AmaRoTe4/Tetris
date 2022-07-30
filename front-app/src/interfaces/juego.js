@@ -3,9 +3,9 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import Tablero from './elementosDom/Tablero.js'
-// import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 let suma = 0;
-let evento = 0;
+let evento = 7;
 let posicion = 0;
 const tiempo = 2500;
 let juego;
@@ -17,7 +17,7 @@ for(let i = 0; i< 250 ; i++){
 } 
 let posiciones = [];
 
-// const URI = "http://192.168.0.108:8000/Usuarios/";
+// const URI = "http://192.168.0.112:8000/Usuarios/";
 const URI = "http://localhost:8000/Usuarios/";
 
 const Juego = () =>{
@@ -25,6 +25,8 @@ const Juego = () =>{
     const [grilla] = useState(obj);
     const [puntos , setPuntos] = useState(0);
     const [puntucionActual , setPuntucionActual] = useState(0);
+    const [CuboActual , setCuboActual] = useState([7,7,7,7,7]);
+    const [RetornoApantalla , setRetornoApantalla] = useState([7,7,7,7,7]);
 
     useEffect(() => {
         PuntoActual();
@@ -36,26 +38,38 @@ const Juego = () =>{
     }
 
     const bloques = () =>{
-        let numero = Math.floor(Math.random()*7)
-        if(numero === 0){
+        if(evento === 7){
+            let estandar = CuboActual;
+            for(let i = 0; i < 5; i++){
+                estandar[i] = Math.floor(Math.random()*7)
+            }
+            setCuboActual({estandar});
+            setRetornoApantalla(CuboActual)
+        }else{
+            CuboActual.shift()
+            let estandar = CuboActual.push(Math.floor(Math.random()*7));
+            setCuboActual({estandar});
+            setRetornoApantalla(CuboActual)
+        }
+        if(CuboActual[0] === 0){
             evento = 0;
             posiciones = [4,5,14,15];
-        }else if(numero === 1){
+        }else if(CuboActual[0] === 1){
             posiciones = [4,5,6,7];
             evento = 1;
-        }else if(numero === 2){
+        }else if(CuboActual[0] === 2){
             posiciones = [5,14,15,16];
             evento = 2
-        }else if(numero === 3){
+        }else if(CuboActual[0] === 3){
             posiciones = [5,6,14,15]; 
             evento = 3;
-        }else if(numero === 4){
+        }else if(CuboActual[0] === 4){
             posiciones = [4,5,15,16]; 
             evento = 4;
-        }else if(numero === 5){
+        }else if(CuboActual[0] === 5){
             posiciones = [4,5,6,14]; 
             evento = 5;
-        }else if(numero === 6){
+        }else if(CuboActual[0] === 6){
             posiciones = [4,5,6,16]; 
             evento = 6;
         }
@@ -365,21 +379,25 @@ const Juego = () =>{
 
     return (
         <div className="container d-flex justify-content-center" style={{height: '100vh', width: '100vw', flexDirection: 'column',}}>
-            <Tablero puntos={puntos} />
-            <div id="tetris" className="container d-flex align-items-center" style={{flexDirection: 'column'}}>
-                <div className="border border-dark d-flex justify-content-around" style={{height: '8vh', width: '300px'}}>
-                    <button id="btnStart" type="button" className="btn btn-danger mt-2" style={{height: '70%',}} onClick={e => {e.preventDefault(); intervalos()}}>Start</button>
-                    <h1>TETRIS</h1>
-                </div>
-                <div id="grilla" className="row border border-dark d-flex " style={{height: '90vh', width: '300px'}}>
-                {grilla.map((n , i) => (
-                    Pintados.includes(i) ? 
-                    <div id={i} key={i} className="border color10" style={{width: '10%', height:'4%'}}></div>
-                    :
-                    <div id={i} key={i} className="border" style={{width: '10%', height:'4%'}}></div>
-                ))}
+            <Link to="/main" className="badge text-wrap position-absolute formaDeFlecha top-0 start-0 m-3 border border-dark" style={{backgroundColor: "rgb(100 100 100", textDecoration: 'none' , color: 'white'}}><p className="mt-3">Volver</p></Link>
+            <div className='d-flex row position-absolute bottom-0 start-50 translate-middle-x' style={{height: '99vh', width: '400px'}}>
+                <Tablero puntos={puntos} numeros={RetornoApantalla} className="col-2"/>
+                <div id="tetris" className="col-9 d-flex align-items-center" style={{flexDirection: 'column'}}>
+                    <div className="d-flex justify-content-around" style={{height: '8vh' , width: '300px' , borderTop: '1px solid black' , borderRight: '1px solid black' , borderLeft: '1px solid black'}}>
+                        <button id="btnStart" type="button" className="btn btn-danger mt-2" style={{height: '70%',}} onClick={e => {e.preventDefault(); intervalos()}}>Start</button>
+                        <h1>TETRIS</h1>
+                    </div>
+                    <div id="grilla" className="row border border-dark d-flex " style={{height: '90vh'}}>
+                    {grilla.map((n , i) => (
+                        Pintados.includes(i) ? 
+                        <div id={i} key={i} className="border color10" style={{width: '10%', height:'4%'}}></div>
+                        :
+                        <div id={i} key={i} className="border" style={{width: '10%', height:'4%'}}></div>
+                    ))}
                 </div>
             </div>
+            </div>
+            
         </div>
     )
 }

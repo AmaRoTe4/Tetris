@@ -1,5 +1,5 @@
 .color1{
-  background-color: crimson;
+  background-color: rgb(255, 0, 0);
   display: inline;
   border-radius: 75%;
 }
@@ -8,7 +8,7 @@
 }
 
 .color10{
-  background-color: crimson;
+  background-color: rgb(255, 0, 0);
   display: inline;
 }
 
@@ -26,11 +26,72 @@
 }
 
 #tablero{
-  border: solid 1px black;
-  margin-top: 100px;
-  height: 100px ; width: 200px
+  border-left: solid 1px black;
+  border-bottom: solid 1px black;
+  border-top: solid 1px black;
+  /* margin-top: 100px; */
+  height: 98vh ;
+  width:100px;
 }
 
-#tetris{
-  transform: translateY(-70px);
+.formaDeFlecha{
+  clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+  width:100px;
+  height: 54px;
+}
+
+.fondo0{
+  background-image: url('../public/fotos/formasTetris.png');
+  background-repeat: no-repeat;
+  background-size: 85%;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.fondo1{
+  background-image: url('../public/fotos/formasTetris1.png');
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.fondo2{
+  background-image: url('../public/fotos/formasTetris2.png');
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.fondo3{
+  background-image: url('../public/fotos/formasTetris3.png');
+  background-repeat: no-repeat;
+  background-size: 55%;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.fondo4{
+  background-image: url('../public/fotos/formasTetris4.png');
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.fondo5{
+  background-image: url('../public/fotos/formasTetris5.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.fondo6{
+  background-image: url('../public/fotos/formasTetris6.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: fixed;
+  background-position: center;
 }
